@@ -1,0 +1,73 @@
+### Roomly API requests. Use with the VS Code "REST Client" extension, or copy into Postman.
+@base = http://localhost:8001/api
+
+### Health
+GET {{base}}/health
+
+### Register a customer
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "name": "Asha Verma", "email": "asha@example.com", "phone": "+919876543210", "password": "Passw0rd123", "confirmPassword": "Passw0rd123" }
+
+### Login (copy "token" from the response into @token below)
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "asha@example.com", "password": "Passw0rd123" }
+
+@token = PASTE_TOKEN_HERE
+
+### Current user
+GET {{base}}/auth/me
+Authorization: Bearer {{token}}
+
+### Rooms free for a date range (use future dates)
+GET {{base}}/rooms?checkIn=2026-12-10&checkOut=2026-12-12
+
+### Create a booking (replace ROOM_ID; total is calculated by the server)
+POST {{base}}/bookings
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "roomId": "ROOM_ID", "fromDate": "2026-12-10", "toDate": "2026-12-12", "guestName": "Asha Verma", "phone": "+919876543210", "paymentOutcome": "success" }
+
+### My bookings
+GET {{base}}/bookings/my
+Authorization: Bearer {{token}}
+
+### Cancel a booking
+PATCH {{base}}/bookings/BOOKING_ID/cancel
+Authorization: Bearer {{token}}
+
+### Customer must be refused here (expect 403)
+GET {{base}}/admin/users
+Authorization: Bearer {{token}}
+
+### Registration cannot create an admin: the "role" field is ignored (user comes back as "customer")
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "name": "Mallory", "email": "mallory@example.com", "phone": "+919876543211", "password": "Passw0rd123", "confirmPassword": "Passw0rd123", "role": "admin" }
+
+### Admin: log in with the seeded admin, then call these with the admin token
+@adminToken = PASTE_ADMIN_TOKEN_HERE
+
+###
+GET {{base}}/admin/dashboard
+Authorization: Bearer {{adminToken}}
+
+###
+GET {{base}}/admin/bookings
+Authorization: Bearer {{adminToken}}
+
+###
+GET {{base}}/admin/users
+Authorization: Bearer {{adminToken}}
+
+### Add a room
+POST {{base}}/rooms
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{ "roomNumber": "D-202", "type": "Double", "description": "Double room with garden view.", "rent": 3000, "count": 3, "amenities": ["Wi-Fi", "Breakfast"], "photos": [] }

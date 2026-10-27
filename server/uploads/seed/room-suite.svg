@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-label="suite room illustration">
+<rect width="800" height="520" fill="#ece3e0"/>
+<rect x="0" y="380" width="800" height="140" fill="#a77c76" opacity=".35"/>
+<rect x="520" y="70" width="190" height="230" fill="#fff" opacity=".75"/><path d="M615 70v230M520 185h190" stroke="#a77c76" stroke-width="6"/>
+<rect x="190" y="270" width="420" height="120" rx="10" fill="#43262a"/>
+<rect x="190" y="230" width="420" height="60" rx="10" fill="#a77c76"/>
+<rect x="206" y="244" width="184" height="40" rx="8" fill="#fff" opacity=".85"/>
+<rect x="410" y="244" width="184" height="40" rx="8" fill="#fff" opacity=".85"/>
+<rect x="182" y="380" width="14" height="30" fill="#43262a"/><rect x="604" y="380" width="14" height="30" fill="#43262a"/>
+<circle cx="130" cy="150" r="14" fill="#b58a3c"/><rect x="127" y="160" width="6" height="90" fill="#43262a"/><rect x="100" y="250" width="60" height="10" rx="4" fill="#43262a"/>
+</svg>
